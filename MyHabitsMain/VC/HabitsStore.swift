@@ -103,7 +103,7 @@ public final class HabitsStore {
     public var habits: [Habit] = [] {
         didSet {
 //            habits.removeAll()
-//            save()
+            save()
         }
     }
     

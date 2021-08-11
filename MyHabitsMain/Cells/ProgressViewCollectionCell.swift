@@ -10,7 +10,7 @@ import UIKit
 class ProgressViewCollectionCell: UICollectionViewCell{
     
     private let progLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         label.text = "Всё получится!"
         label.textColor = .systemGray
@@ -19,7 +19,7 @@ class ProgressViewCollectionCell: UICollectionViewCell{
     }()
     
     private let progPercent: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         label.textColor = .systemGray
         label.textAlignment = .right
@@ -46,26 +46,23 @@ class ProgressViewCollectionCell: UICollectionViewCell{
         super.init(frame: frame)
         updateProg()
         setupViews()
-
+        
     }
     
     func updateProg() {
         progBar.setProgress(HabitsStore.shared.todayProgress, animated: false)
         progPercent.text = "\(Int(HabitsStore.shared.todayProgress * 100))%"
     }
-        
-        func setupViews() {
-            
+    
+    func setupViews() {
         contentView.addSubviews(progLabel, progPercent, progBar)
         contentView.layer.cornerRadius = 8
         contentView.backgroundColor = .white
         
         let constraints = [
-            
             progLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             progLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
             progLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
             
             progPercent.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             progPercent.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
@@ -76,7 +73,7 @@ class ProgressViewCollectionCell: UICollectionViewCell{
             progBar.heightAnchor.constraint(equalToConstant: 7),
             progBar.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
         ]
-
+        
         NSLayoutConstraint.activate(constraints)
     }
     

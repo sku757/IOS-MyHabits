@@ -8,7 +8,7 @@
 import UIKit
 
 class HabitViewController: UIViewController {
-   
+    
     var habit: Habit? {
         didSet {
             editHabit()
@@ -91,7 +91,7 @@ class HabitViewController: UIViewController {
         label.toAutoLayout()
         return label
     }()
-   
+    
     private let timePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.preferredDatePickerStyle = .wheels
@@ -114,12 +114,12 @@ class HabitViewController: UIViewController {
         button.backgroundColor = .white
         button.setTitle("Удалить привычку", for: .normal)
         button.setTitleColor(UIColor.red, for: .normal)
-        button.addTarget(self, action: #selector(showAlertController), for: .touchUpInside)
+        button.addTarget(self, action: #selector(alert), for: .touchUpInside)
         button.toAutoLayout()
         return button
     }()
     
-    @objc func showAlertController() {
+    @objc func alert() {
         
         guard let habitToRemove = habit else { return }
         let alertController = UIAlertController(title: "Удалить привычку", message: "Вы хотите удалить привычку \"\(habitToRemove.name)\"?", preferredStyle: .alert)
@@ -158,7 +158,7 @@ class HabitViewController: UIViewController {
     }
     
     @objc func returnBack() {
-    self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
         
     }
     
@@ -190,9 +190,9 @@ class HabitViewController: UIViewController {
         
         scrollView.toAutoLayout()
         
-        view.addSubview(scrollView)
+        view.addSubviews(scrollView,removeButton)
         scrollView.addSubview(habitView)
-        habitView.addSubviews(nameLabel, habitTextfield, colorLabel, colorButton, timeLabel, timePickerLabel, timeSelectedLabel, timePicker, removeButton)
+        habitView.addSubviews(nameLabel, habitTextfield, colorLabel, colorButton, timeLabel, timePickerLabel, timeSelectedLabel, timePicker)
         
         let constraints = [
             
@@ -237,10 +237,11 @@ class HabitViewController: UIViewController {
             timePicker.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 15),
             timePicker.leadingAnchor.constraint(equalTo: habitView.leadingAnchor),
             timePicker.trailingAnchor.constraint(equalTo: habitView.trailingAnchor),
+            timePicker.bottomAnchor.constraint(equalTo: habitView.bottomAnchor, constant: -260),
             
-            removeButton.topAnchor.constraint(equalTo: timePicker.bottomAnchor,constant: 219),
-            removeButton.centerXAnchor.constraint(equalTo: habitView.centerXAnchor),
-            removeButton.bottomAnchor.constraint(equalTo: habitView.bottomAnchor, constant: -18)
+           
+            removeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            removeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25)
         ]
         
         NSLayoutConstraint.activate(constraints)
@@ -266,7 +267,7 @@ class HabitViewController: UIViewController {
     }
     
     private var sideInset: CGFloat { return 16 }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         

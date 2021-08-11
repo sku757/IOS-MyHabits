@@ -11,6 +11,8 @@ class HabitViewCollectionCell: UICollectionViewCell {
     
     var isChecked: (() -> Void)?
     
+    private var trailingInset: CGFloat { return 16 }
+    
     var habit: Habit? {
         didSet {
             habitNameLabel.text = habit?.name
@@ -29,15 +31,15 @@ class HabitViewCollectionCell: UICollectionViewCell {
     }
     
     private let habitNameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         label.numberOfLines = 2
         label.toAutoLayout()
-       return label
+        return label
     }()
     
     private let habitDateLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         label.textColor = .systemGray2
         label.toAutoLayout()
@@ -45,16 +47,16 @@ class HabitViewCollectionCell: UICollectionViewCell {
     }()
     
     private let countLabel : UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         label.textColor = .systemGray2
         label.text = "Счетчик:"
         label.toAutoLayout()
-       return label
+        return label
     }()
     
     private lazy var countValueLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         label.textColor = .systemGray2
         label.toAutoLayout()
@@ -62,7 +64,7 @@ class HabitViewCollectionCell: UICollectionViewCell {
     }()
     
     private lazy var habitButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.layer.cornerRadius = 19
         button.layer.borderWidth = 3
         button.backgroundColor = .white
@@ -86,13 +88,13 @@ class HabitViewCollectionCell: UICollectionViewCell {
     }
     
     func checkmark() {
-         let size = UIFont.systemFont(ofSize: 17, weight: .semibold)
-         let conf = UIImage.SymbolConfiguration(font: size)
-         let image = UIImage(systemName: "checkmark", withConfiguration: conf)
-         habitButton.setImage(image, for: UIControl.State.normal)
-         habitButton.tintColor = .white
-     }
-  
+        let size = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        let conf = UIImage.SymbolConfiguration(font: size)
+        let image = UIImage(systemName: "checkmark", withConfiguration: conf)
+        habitButton.setImage(image, for: UIControl.State.normal)
+        habitButton.tintColor = .white
+    }
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -130,4 +132,4 @@ class HabitViewCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
-private var trailingInset: CGFloat { return 16 }
+

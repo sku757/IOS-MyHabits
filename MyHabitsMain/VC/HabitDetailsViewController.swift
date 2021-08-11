@@ -17,7 +17,7 @@ class HabitDetailsViewController: UIViewController {
     init (habit: Habit) {
         self.habit = habit
         super.init(nibName: nil, bundle: nil)
-
+        
     }
     @available(*, unavailable)
     required init?(coder: NSCoder) {
@@ -35,11 +35,9 @@ class HabitDetailsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(goToHabitsVC), name: NSNotification.Name(rawValue: "goToHabitsVC"), object: nil)
         view.addSubview(tableView)
         tableView.toAutoLayout()
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Править", style: .plain, target: self, action:  #selector(editButton))
         
         let constraints = [
-            
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -60,9 +58,6 @@ class HabitDetailsViewController: UIViewController {
         let navController = UINavigationController(rootViewController: VC)
         self.present(navController, animated: true, completion: nil)
     }
-    
-    
-   
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
@@ -85,13 +80,12 @@ extension HabitDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-       
+        
         let datesTracked = HabitsStore.shared.dates.count - indexPath.item - 1
         cell.textLabel?.text = HabitsStore.shared.trackDateString(forIndex: datesTracked)
         cell.tintColor = UIColor.purple
-
         let selectedHabit = self.habit
-            let date = HabitsStore.shared.dates[datesTracked]
+        let date = HabitsStore.shared.dates[datesTracked]
         if HabitsStore.shared.habit(selectedHabit, isTrackedIn: date) {
             cell.accessoryType = .checkmark
         } else {
@@ -115,7 +109,7 @@ extension HabitDetailsViewController: UITableViewDelegate {
         return UITableView.automaticDimension
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
         return tableView.deselectRow(at: indexPath, animated: true)
         
     }

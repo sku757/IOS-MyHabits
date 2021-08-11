@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		EE948EE2269F052E003860AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE948EE1269F052E003860AA /* AppDelegate.swift */; };
 		EE948EE4269F052E003860AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE948EE3269F052E003860AA /* SceneDelegate.swift */; };
-		EE948EE6269F052E003860AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE948EE5269F052E003860AA /* ViewController.swift */; };
 		EE948EE9269F052E003860AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE948EE7269F052E003860AA /* Main.storyboard */; };
 		EE948EEB269F0530003860AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE948EEA269F0530003860AA /* Assets.xcassets */; };
 		EE948EEE269F0530003860AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE948EEC269F0530003860AA /* LaunchScreen.storyboard */; };
@@ -45,7 +44,6 @@
 		EE948EDE269F052E003860AA /* MyHabitsMain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabitsMain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE948EE1269F052E003860AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE948EE3269F052E003860AA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EE948EE5269F052E003860AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EE948EE8269F052E003860AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EE948EEA269F0530003860AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE948EED269F0530003860AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 			children = (
 				EE948EE1269F052E003860AA /* AppDelegate.swift */,
 				EE948EE3269F052E003860AA /* SceneDelegate.swift */,
-				EE948EE5269F052E003860AA /* ViewController.swift */,
 				EE948EE7269F052E003860AA /* Main.storyboard */,
 				EE948F4726A1EF54003860AA /* Cells */,
 				EE948F23269F095A003860AA /* VC */,
@@ -296,7 +293,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE948F2D269F0A66003860AA /* HabitsStore.swift in Sources */,
-				EE948EE6269F052E003860AA /* ViewController.swift in Sources */,
 				EE948F4926A1EF6F003860AA /* ProgressViewCollectionCell.swift in Sources */,
 				EE948F1F269F0958003860AA /* HabitViewController.swift in Sources */,
 				EE948EE2269F052E003860AA /* AppDelegate.swift in Sources */,
