@@ -54,6 +54,7 @@ class HabitViewController: UIViewController {
     private let colorButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 15
+        button.clipsToBounds = true
         button.backgroundColor = .orange
         button.addTarget(self, action: #selector(tapColorButton), for: .touchUpInside)
         button.toAutoLayout()
@@ -84,14 +85,6 @@ class HabitViewController: UIViewController {
         return label
     }()
     
-    private let timeSelectedLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.purple
-        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        label.toAutoLayout()
-        return label
-    }()
-    
     private let timePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.preferredDatePickerStyle = .wheels
@@ -105,8 +98,7 @@ class HabitViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
         formatter.dateStyle = .none
-        
-        timeSelectedLabel.text = formatter.string(from: timePicker.date)
+        timePickerLabel.text = "Каждый день в " + formatter.string(from: timePicker.date)
     }
     
     private let removeButton: UIButton = {
@@ -117,6 +109,16 @@ class HabitViewController: UIViewController {
         button.addTarget(self, action: #selector(alert), for: .touchUpInside)
         button.toAutoLayout()
         return button
+    }()
+    
+    let stack: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.distribution = .fill
+        stackView.spacing = 15
+        stackView.toAutoLayout()
+        return stackView
     }()
     
     @objc func alert() {
@@ -183,8 +185,9 @@ class HabitViewController: UIViewController {
         let timeFormatter = DateFormatter()
         timeFormatter.timeStyle = .short
         timeFormatter.dateStyle = .none
-        timeSelectedLabel.text = timeFormatter.string(from: timePicker.date)
+        timePickerLabel.text = "Каждый день в " + timeFormatter.string(from: timePicker.date)
     }
+    
     
     func setupViews() {
         
@@ -192,7 +195,11 @@ class HabitViewController: UIViewController {
         
         view.addSubviews(scrollView,removeButton)
         scrollView.addSubview(habitView)
-        habitView.addSubviews(nameLabel, habitTextfield, colorLabel, colorButton, timeLabel, timePickerLabel, timeSelectedLabel, timePicker)
+        habitView.addSubviews(stack)
+        stack.addArrangedSubviews(nameLabel,habitTextfield,colorLabel,colorButton,timeLabel,timePickerLabel,timePicker)
+        stack.setCustomSpacing(7, after: nameLabel)
+        stack.setCustomSpacing(7, after: colorLabel)
+        stack.setCustomSpacing(7, after: timeLabel)
         
         let constraints = [
             
@@ -207,39 +214,13 @@ class HabitViewController: UIViewController {
             habitView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             habitView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            nameLabel.topAnchor.constraint(equalTo: habitView.topAnchor, constant: 21),
-            nameLabel.leadingAnchor.constraint(equalTo: habitView.leadingAnchor, constant: sideInset),
-            nameLabel.trailingAnchor.constraint(equalTo: habitView.trailingAnchor, constant: -sideInset),
+            stack.topAnchor.constraint(equalTo: habitView.topAnchor, constant: 21),
+            stack.leadingAnchor.constraint(equalTo: habitView.leadingAnchor, constant: 16),
+            stack.trailingAnchor.constraint(equalTo: habitView.trailingAnchor, constant: 21),
+            stack.bottomAnchor.constraint(equalTo: habitView.bottomAnchor),
             
-            habitTextfield.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 7),
-            habitTextfield.leadingAnchor.constraint(equalTo: habitView.leadingAnchor, constant: 15),
-            habitTextfield.trailingAnchor.constraint(equalTo: habitView.trailingAnchor, constant: -sideInset),
-            
-            colorLabel.topAnchor.constraint(equalTo: habitTextfield.bottomAnchor, constant: 15),
-            colorLabel.leadingAnchor.constraint(equalTo: habitView.leadingAnchor, constant: sideInset),
-            colorLabel.trailingAnchor.constraint(equalTo: habitView.trailingAnchor, constant: -sideInset),
-            
-            colorButton.topAnchor.constraint(equalTo: colorLabel.bottomAnchor, constant: 7),
-            colorButton.leadingAnchor.constraint(equalTo: habitView.leadingAnchor, constant: sideInset),
             colorButton.widthAnchor.constraint(equalToConstant: 30),
             colorButton.heightAnchor.constraint(equalTo: colorButton.widthAnchor),
-            
-            timeLabel.topAnchor.constraint(equalTo: colorButton.bottomAnchor, constant: 15),
-            timeLabel.leadingAnchor.constraint(equalTo: habitView.leadingAnchor, constant: sideInset),
-            timeLabel.trailingAnchor.constraint(equalTo: habitView.trailingAnchor, constant: -sideInset),
-            
-            timePickerLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 7),
-            timePickerLabel.leadingAnchor.constraint(equalTo: habitView.leadingAnchor, constant: sideInset),
-            timePickerLabel.trailingAnchor.constraint(equalTo: timeSelectedLabel.leadingAnchor, constant: -1),
-            
-            timeSelectedLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 7),
-            
-            timePicker.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 15),
-            timePicker.leadingAnchor.constraint(equalTo: habitView.leadingAnchor),
-            timePicker.trailingAnchor.constraint(equalTo: habitView.trailingAnchor),
-            timePicker.bottomAnchor.constraint(equalTo: habitView.bottomAnchor, constant: -260),
-            
-           
             removeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             removeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25)
         ]
@@ -313,3 +294,6 @@ extension HabitViewController: UIColorPickerViewControllerDelegate {
         self.colorButton.backgroundColor = viewController.selectedColor
     }
 }
+
+
+

@@ -9,7 +9,7 @@ import UIKit
 
 class HabitViewCollectionCell: UICollectionViewCell {
     
-    var isChecked: (() -> Void)?
+    var examination: (() -> Void)?
     
     private var trailingInset: CGFloat { return 16 }
     
@@ -81,7 +81,7 @@ class HabitViewCollectionCell: UICollectionViewCell {
             habitButton.backgroundColor = self.habit?.color
             checkmark()
             countValueLabel.text = "\(habit.trackDates.count)"
-            if let trackHabit = isChecked {
+            if let trackHabit = examination {
                 trackHabit()
             }
         } 

@@ -102,7 +102,6 @@ public final class HabitsStore {
     /// Список привычек, добавленных пользователем. Добавленные привычки сохраняются в UserDefaults и доступны после перезагрузки приложения.
     public var habits: [Habit] = [] {
         didSet {
-//            habits.removeAll()
             save()
         }
     }
